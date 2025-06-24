@@ -1,11 +1,12 @@
 import express from 'express'
 import serverless from 'serverless-http'
 import jsonwebtoken from 'jsonwebtoken'
+import bodyParser from 'body-parser'
 const app = express()
 const router = express.Router()
 
 // app.use(express.raw({type: "application/json"}))
-app.use(express.bodyParser());
+app.use(bodyParser.json());
 
 const getToken = (req: any) => {
   if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
