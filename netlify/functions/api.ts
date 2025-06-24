@@ -37,11 +37,12 @@ router.post('/prompt', (req, res) => {
   const token = getToken(req)
   console.log(token)
   jsonwebtoken.verify(token, pk,  { algorithms: ['RS256'] }, (err, decoded) => {
-      if (err) {
-          res.status(400).json({ error: err });
-          } else {
-          res.status(200).json({ decoded, params: req.body, token: token, content: '你是一个测试开发工程师', type: 'partial' });
-      }
+    if (err) {
+      res.status(400).json({ error: err });
+      } else {
+      const data = { decoded, params: req.body, token: token, prompt: '你是一个测试开发工程师', type: 'partial' }
+      res.status(200).json(data);
+    }
   });
 })
 
