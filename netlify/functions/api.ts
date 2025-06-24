@@ -7,7 +7,8 @@ const router = express.Router()
 
 // app.use(express.raw({type: "application/json"}))
 // app.use(bodyParser.json());
-app.use(express.json());
+app.use(express.json()) // for parsing application/json
+app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
 const getToken = (req: any) => {
   if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
@@ -22,6 +23,11 @@ const getToken = (req: any) => {
 router.get('/hello', (req, res) => {
   res.json({ message: 'Hello, world!' });
 });
+
+app.post('/profile', (req, res) => {
+  console.log(req.body)
+  res.json(req.body)
+})
 
 const pk = `-----BEGIN PUBLIC KEY-----
 MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEA8N904kXD+cO6ZgDGYKvQ
