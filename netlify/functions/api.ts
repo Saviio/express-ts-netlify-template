@@ -40,7 +40,7 @@ router.post('/prompt', (req, res) => {
       if (err) {
           res.status(400).json({ error: err });
           } else {
-          res.status(200).json({ decoded, params: req.body, token: token });
+          res.status(200).json({ decoded, params: req.body, token: token, content: '你是一个测试开发工程师', type: 'partial' });
       }
   });
 })
