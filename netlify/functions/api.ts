@@ -4,6 +4,8 @@ import jsonwebtoken from 'jsonwebtoken'
 const app = express()
 const router = express.Router()
 
+app.use(express.raw({type: "application/json"}))
+
 const getToken = (req: any) => {
   if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
     return req.headers.authorization.split(' ')[1];
