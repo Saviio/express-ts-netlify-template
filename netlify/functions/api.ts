@@ -27,7 +27,7 @@ router.get('/hello', (req, res) => {
 router.post('/profile', (req, res) => {
   console.log(req.body)
   console.log(JSON.parse(req.body))
-  res.json(req.body)
+  res.json(JSON.parse(req.body))
 })
 
 const pk = `-----BEGIN PUBLIC KEY-----
@@ -52,7 +52,7 @@ router.post('/prompt', (req, res) => {
     if (err) {
       res.status(400).json({ error: err });
       } else {
-      const body = req.body.toJSON()
+      const body = JSON.parse(req.body)
       const data = { decoded, params: body, token: token, data: '你是一个测试开发工程师', prompt: '你是一个测试开发工程师', type: 'partial' }
       console.log(data)
       res.status(200).json(data);
