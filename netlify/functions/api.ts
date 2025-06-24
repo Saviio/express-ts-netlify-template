@@ -40,7 +40,8 @@ router.post('/prompt', (req, res) => {
     if (err) {
       res.status(400).json({ error: err });
       } else {
-      const data = { decoded, params: req.body, token: token,data: '你是一个测试开发工程师', prompt: '你是一个测试开发工程师', type: 'partial' }
+      const data = { decoded, params: req.body, token: token, data: '你是一个测试开发工程师', prompt: '你是一个测试开发工程师', type: 'partial' }
+      console.log(data)
       res.status(200).json(data);
     }
   });
