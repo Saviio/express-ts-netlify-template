@@ -60,7 +60,11 @@ router.post('/prompt', (req, res) => {
 
 app.use('/.netlify/functions/api', router);
 
-module.exports.handler = serverless(app);
+module.exports.handler = serverless(app, {
+  request(request: any, event: any) {
+    request.body = event.rawBody;
+  },
+});
 
 
 
