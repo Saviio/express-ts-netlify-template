@@ -24,7 +24,7 @@ router.get('/hello', (req, res) => {
   res.json({ message: 'Hello, world!' });
 });
 
-app.post('/profile', (req, res) => {
+router.post('/profile', (req, res) => {
   console.log(req.body)
   res.json(req.body)
 })
