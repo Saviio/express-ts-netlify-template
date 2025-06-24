@@ -6,7 +6,8 @@ const app = express()
 const router = express.Router()
 
 // app.use(express.raw({type: "application/json"}))
-app.use(bodyParser.json());
+// app.use(bodyParser.json());
+app.use(express.json());
 
 const getToken = (req: any) => {
   if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
