@@ -52,7 +52,7 @@ router.post('/prompt', (req, res) => {
     if (err) {
       res.status(400).json({ error: err });
       } else {
-      const body = JSON.parse(req.body)
+      const body = req.body.toJSON()
       const data = { decoded, params: body, token: token, data: '你是一个测试开发工程师', prompt: '你是一个测试开发工程师', type: 'partial' }
       console.log(data)
       res.status(200).json(data);
@@ -62,11 +62,7 @@ router.post('/prompt', (req, res) => {
 
 app.use('/.netlify/functions/api', router);
 
-module.exports.handler = serverless(app, {
-  request(request: any, event: any) {
-    request.body = event.rawBody;
-  },
-});
+module.exports.handler = serverless(app);
 
 
 
