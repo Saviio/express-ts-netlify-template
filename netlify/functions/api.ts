@@ -5,10 +5,8 @@ import bodyParser from 'body-parser'
 const app = express()
 const router = express.Router()
 
-// app.use(express.raw({type: "application/json"}))
-// app.use(bodyParser.json());
-app.use(express.json()) // for parsing application/json
-app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 
 const getToken = (req: any) => {
   if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
@@ -53,16 +51,23 @@ router.post('/prompt', (req, res) => {
       res.status(400).json({ error: err });
       } else {
       const body = JSON.parse(req.body)
-      const data = { decoded, params: body, token: token, data: '你是一个测试开发工程师', prompt: '你是一个测试开发工程师', type: 'partial' }
+      const data = { 
+        decoded, 
+        params: body, 
+        token: token, 
+        data: '你是一个法务，专门从事数据合规、业务出海，熟知 GDPR、欧盟数据法相关领域，请你从专业的、安全角度、个人数据隐私等角度回答用户问题', 
+        type: 'completely' 
+      }
+
       console.log(data)
-      res.status(200).json(data);
+      res.status(200).json(data)
     }
-  });
+  })
 })
 
-app.use('/.netlify/functions/api', router);
+app.use('/.netlify/functions/api', router)
 
-module.exports.handler = serverless(app);
+module.exports.handler = serverless(app)
 
 
 
